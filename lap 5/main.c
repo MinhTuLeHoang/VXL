@@ -291,27 +291,6 @@ void uart_communication_fsm()
 
 
 
-// ------ BEGIN TIMER INTERUPT ----- //
-// --------------------------------- //
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (enableClock)
-    {
-        if (counter <= 0)
-        {
-            isPrint = 1;
-            counter = MAX_COUNT;
-        }
-        else
-        {
-            counter--;
-        }
-    }
-}
-
-
-
-
 int main(void)
 {
     /* USER CODE BEGIN 1 */
@@ -550,7 +529,23 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+// ------ BEGIN TIMER INTERUPT ----- //
+// --------------------------------- //
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (enableClock)
+    {
+        if (counter <= 0)
+        {
+            isPrint = 1;
+            counter = MAX_COUNT;
+        }
+        else
+        {
+            counter--;
+        }
+    }
+}
 /* USER CODE END 4 */
 
 /**
